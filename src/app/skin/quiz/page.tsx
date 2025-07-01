@@ -5,7 +5,6 @@ import { useRouter } from "next/navigation";
 import { Header } from "@/components/layout/Header";
 import Image from 'next/image';
 
-
 interface SkinTypeOption {
   id: string;
   description: string;
@@ -305,9 +304,8 @@ export default function SkinTypeQuizPage() {
 
   return (
     <div className="min-h-screen bg-white">
-      <Header isLoggedIn={true} activePage="features" onSignOut={handleSignOut} />
+      <Header activePage="features"/>
 
-      {/* Hero */}
       <div className="relative w-full h-[250px] flex items-center justify-center overflow-hidden">
         <div
           className="absolute inset-0 bg-cover bg-center bg-no-repeat"
@@ -381,22 +379,22 @@ export default function SkinTypeQuizPage() {
 
           {/* Navigation */}
           <div className="flex items-center justify-between mt-12">
-            <button
-              onClick={handleBack}
-              className="w-12 h-12 bg-gray-200 rounded-full hover:bg-gray-300"
+          <button
+            onClick={handleBack}
+            className="w-12 h-12 flex items-center justify-center bg-gray-200 rounded-full hover:bg-gray-300"
+          >
+            <svg
+              className="w-5 h-5 text-[#1C1B1F]"
+              viewBox="0 0 34 26"
+              fill="none"
+              xmlns="http://www.w3.org/2000/svg"
             >
-              <svg
-                className="w-6 h-5 text-[#1C1B1F]"
-                viewBox="0 0 34 26"
-                fill="none"
-              >
-                <path
-                  d="M12.832 25.5L0.332031 13L12.832 0.5L15.7487 3.52083L8.35286 10.9167H33.6654V15.0833H8.35286L15.7487 22.4792L12.832 25.5Z"
-                  fill="currentColor"
-                />
-              </svg>
-            </button>
-
+              <path
+                d="M12.832 25.5L0.332031 13L12.832 0.5L15.7487 3.52083L8.35286 10.9167H33.6654V15.0833H8.35286L15.7487 22.4792L12.832 25.5Z"
+                fill="currentColor"
+              />
+            </svg>
+          </button>
             {selectedOption && (
               <button
                 onClick={handleNext}

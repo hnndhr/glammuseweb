@@ -215,7 +215,7 @@ export default function SkinTypeResults() {
 
   return (
     <div className="min-h-screen bg-white">
-      <Header isLoggedIn={true} activePage="features" onSignOut={handleSignOut} />
+      <Header activePage="features"/>
 
       {/* Hero Section */}
       <div className="relative w-full h-[250px] flex items-center justify-center overflow-hidden">
