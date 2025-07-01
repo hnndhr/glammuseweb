@@ -1,14 +1,7 @@
 import React, { useState } from 'react';
 import { FaReceipt, FaMoneyBillWave, FaRegClock } from 'react-icons/fa';
 import { Pencil } from 'lucide-react';
-
-interface SubscriptionPlan {
-  id: string;
-  name: string;
-  price: string;
-  weeklyPrice: string;
-  features: string[];
-}
+import { subscriptionPlans, SubscriptionPlan } from "@/data/subscriptionPlans";
 
 interface SubscriptionSectionProps {
   currentPlan?: string;
@@ -18,30 +11,6 @@ interface SubscriptionSectionProps {
   onViewAnalysisDetails?: (analysisId: string) => void;
   userEmail: string;
 }
-
-const subscriptionPlans: SubscriptionPlan[] = [
-  {
-    id: 'rookie',
-    name: 'Rookie Plan',
-    price: 'FREE',
-    weeklyPrice: 'Rp0 / Week',
-    features: ['Limited product access', '3x Skin Analysis/month', 'No Outfit Simulation']
-  },
-  {
-    id: 'muse',
-    name: 'Muse Plan',
-    price: 'Rp99.000',
-    weeklyPrice: 'Rp24.750 / Week',
-    features: ['Full catalog access', 'Daily Outfit Simulations', 'AI-based product tips']
-  },
-  {
-    id: 'iconic',
-    name: 'Iconic Plan',
-    price: 'Rp169.000',
-    weeklyPrice: 'Rp42.250 / Week',
-    features: ['2 expert consults/month', 'Body Fit & Lookbook', 'Member deals']
-  }
-];
 
 export const SubscriptionSection: React.FC<SubscriptionSectionProps> = ({
   currentPlan = 'Iconic Plan',

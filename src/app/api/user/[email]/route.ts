@@ -30,11 +30,28 @@ export async function PUT(
 ) {
   try {
     await connectToDatabase();
-    const data = await req.json();
+    const email = decodeURIComponent(params.email);
+    const { firstName, lastName, phone, profilePicture } = await req.json();
 
+    // 🔒 Validasi input minimal
+    if (!firstName || !lastName || !phone) {
+      return NextResponse.json(
+        { message: "Missing required fields" },
+        { status: 400 }
+      );
+    }
+
+    // 🔄 Update user
     const updatedUser = await User.findOneAndUpdate(
-      { email: decodeURIComponent(params.email) },
-      { $set: data },
+      { email },
+      {
+        $set: {
+          firstName,
+          lastName,
+          phone,
+          ...(profilePicture && { profilePicture }), // hanya update jika ada
+        },
+      },
       { new: true }
     );
 
