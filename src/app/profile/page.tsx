@@ -2,10 +2,10 @@
 
 import React, { useState } from "react";
 import { useRouter } from "next/navigation";
-import { Header } from "@/components/Header";
-import { ProfileSection } from "@/components/ProfileSection";
-import { SubscriptionSection } from "@/components/SubscriptionSection";
-import { Footer } from "@/components/Footer";
+import { Header } from "@/components/layout/Header";
+import { ProfileSection } from "@/components/profile/ProfileSection";
+import { SubscriptionSection } from "@/components/profile/SubscriptionSection";
+import { Footer } from "@/components/layout/Footer";
 
 interface PersonalInfo {
   firstName: string;

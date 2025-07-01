@@ -1,10 +1,10 @@
 "use client";
 
 import React from "react";
-import { Header } from "@/components/Header";
-import { Hero } from "@/components/Hero";
-import { ArticleContent } from "@/components/ArticleContent";
-import { Footer } from "@/components/Footer";
+import { Header } from "@/components/layout/Header";
+import { Hero } from "@/components/landing/Hero";
+import { ArticleContent } from "@/components/blog/ArticleContent";
+import { Footer } from "@/components/layout/Footer";
 
 export default function ArticlePage() {
   const handleSignOut = () => {

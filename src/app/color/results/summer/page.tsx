@@ -1,10 +1,10 @@
 "use client";
 
 import React from "react";
-import { Header } from '@/components/Header';
-import { HeroSection } from '@/components/ResultColor/Summer/Hero';
-import ColorPalette, { } from '@/components/ResultColor/Summer/ColorPalette';
-import { Footer } from '@/components/Footer';
+import { Header } from '@/components/layout/Header';
+import { HeroSection } from '@/components/color/result/Summer/Hero';
+import ColorPalette, { } from '@/components/color/result/Summer/ColorPalette';
+import { Footer } from '@/components/layout/Footer';
 
 export default function ResultColorSummerPage() {
   return (

@@ -2,11 +2,11 @@
 
 import { useState } from "react";
 import { useRouter } from "next/navigation";
-import { Header } from "@/components/Header";
-import HeroColor from "@/components/ColorMatch/HeroColor";
-import ColorFilterBox from "@/components/ColorMatch/ColorFilterBox";
-import InstructionSection from "@/components/ColorMatch/InstructionSection";
-import { Footer } from "@/components/Footer";
+import { Header } from "@/components/layout/Header";
+import HeroColor from "@/components/color/HeroColor";
+import ColorFilterBox from "@/components/color/ColorFilterBox";
+import InstructionSection from "@/components/color/InstructionSection";
+import { Footer } from "@/components/layout/Footer";
 
 export default function ColorPage() {
   const router = useRouter();

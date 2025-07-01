@@ -1,5 +1,8 @@
+"use client";
+
 import { useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { useRouter } from "next/navigation";
+import Image from "next/image";
 
 interface Feature {
   title: string;
@@ -14,21 +17,21 @@ interface FeaturesSectionProps {
 
 export const FeaturesSection = ({ onTryNow }: FeaturesSectionProps) => {
   const [currentFeatureIndex, setCurrentFeatureIndex] = useState(0);
-  const navigate = useNavigate();
+  const router = useRouter();
 
   const features: Feature[] = [
     {
       title: "COLOR ANALYSIS",
       subtitle: "Discover the shades that make you pop!",
       image:
-        "https://images.unsplash.com/photo-1562572159-4efc207f5aff?q=80&w=735&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+        "https://images.unsplash.com/photo-1562572159-4efc207f5aff?q=80&w=735&auto=format&fit=crop&ixlib=rb-4.1.0",
       route: "/color",
     },
     {
       title: "SKIN ANALYSIS",
       subtitle: "Know your skin. Glow your skin",
       image:
-        "https://images.unsplash.com/photo-1534528741775-53994a69daeb?q=80&w=1964&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+        "https://images.unsplash.com/photo-1534528741775-53994a69daeb?q=80&w=1964&auto=format&fit=crop&ixlib=rb-4.1.0",
       route: "/skin",
     },
     {
@@ -45,16 +48,12 @@ export const FeaturesSection = ({ onTryNow }: FeaturesSectionProps) => {
   };
 
   const prevFeature = () => {
-    setCurrentFeatureIndex(
-      (prev) => (prev - 1 + features.length) % features.length,
-    );
+    setCurrentFeatureIndex((prev) => (prev - 1 + features.length) % features.length);
   };
 
   const handleTryNowClick = (feature: Feature) => {
-    if (onTryNow) {
-      onTryNow();
-    }
-    navigate(feature.route);
+    onTryNow?.();
+    router.push(feature.route);
   };
 
   return (
@@ -63,7 +62,6 @@ export const FeaturesSection = ({ onTryNow }: FeaturesSectionProps) => {
       <div className="bg-gradient-to-r from-[#241910] via-[#20160F] to-[#17100C] py-12 lg:py-16 mb-16 opacity-75">
         <div className="container mx-auto px-6 lg:px-16">
           <div className="flex items-center justify-center gap-5">
-            {/* Star Icon */}
             <svg
               className="w-16 h-12 lg:w-20 lg:h-16 text-white"
               viewBox="0 0 81 65"
@@ -82,47 +80,16 @@ export const FeaturesSection = ({ onTryNow }: FeaturesSectionProps) => {
         </div>
       </div>
 
-      {/* Feature Carousel */}
+      {/* Carousel */}
       <div className="relative">
-        {/* Navigation Arrows */}
-        <button
-          onClick={prevFeature}
-          className="absolute left-4 lg:left-8 top-1/2 transform -translate-y-1/2 z-10 p-2 hover:scale-110 transition-all duration-200 opacity-50 hover:opacity-75"
-        >
-          <svg
-            className="w-8 h-12 lg:w-10 lg:h-16 text-glam-tertiary"
-            viewBox="0 0 42 68"
-            fill="none"
-            xmlns="http://www.w3.org/2000/svg"
-          >
-            <path
-              opacity="0.5"
-              d="M27.0484 33.5457L0.881836 7.45455L8.35782 0.00012207L42.0004 33.5457L8.35782 67.0913L0.881836 59.6368L27.0484 33.5457Z"
-              fill="currentColor"
-              transform="rotate(180 21 34)"
-            />
-          </svg>
+        <button onClick={prevFeature} className="absolute left-4 lg:left-8 top-1/2 -translate-y-1/2 z-10 p-2">
+          <ChevronIcon direction="left" />
         </button>
 
-        <button
-          onClick={nextFeature}
-          className="absolute right-4 lg:right-8 top-1/2 transform -translate-y-1/2 z-10 p-2 hover:scale-110 transition-all duration-200 opacity-50 hover:opacity-75"
-        >
-          <svg
-            className="w-8 h-12 lg:w-10 lg:h-16 text-glam-tertiary"
-            viewBox="0 0 42 68"
-            fill="none"
-            xmlns="http://www.w3.org/2000/svg"
-          >
-            <path
-              opacity="0.5"
-              d="M27.0484 33.5457L0.881836 7.45455L8.35782 0.00012207L42.0004 33.5457L8.35782 67.0913L0.881836 59.6368L27.0484 33.5457Z"
-              fill="currentColor"
-            />
-          </svg>
+        <button onClick={nextFeature} className="absolute right-4 lg:right-8 top-1/2 -translate-y-1/2 z-10 p-2">
+          <ChevronIcon direction="right" />
         </button>
 
-        {/* Feature Cards Container */}
         <div className="overflow-hidden px-8 lg:px-16">
           <div
             className="flex transition-transform duration-500 ease-in-out gap-8"
@@ -132,39 +99,35 @@ export const FeaturesSection = ({ onTryNow }: FeaturesSectionProps) => {
             }}
           >
             {features.map((feature, index) => (
-              <div
-                key={index}
-                className="flex-shrink-0"
-                style={{ width: `${100 / features.length}%` }}
-              >
+              <div key={index} className="flex-shrink-0" style={{ width: `${100 / features.length}%` }}>
                 <div className="bg-gradient-to-r from-[#311D12] to-[#8E6751] rounded-3xl mx-auto max-w-5xl">
                   <div className="flex flex-col lg:flex-row items-center h-[617px]">
-                    {/* Content Section */}
+                    {/* Text */}
                     <div className="flex-1 p-8 lg:p-16 text-center lg:text-left">
-                      <h3 className="font-port-lligat text-white text-3xl lg:text-5xl tracking-[2.75px] uppercase mb-4 leading-[120%]">
+                      <h3 className="font-port-lligat text-white text-3xl lg:text-5xl tracking-[2.75px] uppercase mb-4">
                         {feature.title}
                       </h3>
-                      <p className="font-inter text-white text-lg lg:text-xl mb-8 drop-shadow-lg">
+                      <p className="font-inter text-white text-lg lg:text-xl mb-8">
                         {feature.subtitle}
                       </p>
                       <button
                         onClick={() => handleTryNowClick(feature)}
-                        className="group relative inline-flex items-center justify-center px-9 py-3.5 border border-white bg-transparent rounded-full font-hanuman font-bold text-2xl text-white transition-all duration-500 ease-out hover:px-16 hover:scale-105 focus:outline-none focus:ring-2 focus:ring-white focus:ring-opacity-50 overflow-hidden"
+                        className="group inline-flex items-center justify-center px-9 py-3.5 border border-white rounded-full font-hanuman font-bold text-2xl text-white hover:scale-105 transition-all"
                       >
-                        <span className="relative z-10 transition-all duration-300">
-                          Try Now
-                        </span>
-                        <div className="absolute inset-0 border border-white rounded-full opacity-0 group-hover:opacity-30 transition-opacity duration-500"></div>
+                        Try Now
                       </button>
                     </div>
 
-                    {/* Image Section */}
+                    {/* Image */}
                     <div className="flex-1 p-8 lg:p-16 lg:pr-20">
-                      <img
-                        src={feature.image}
-                        alt={`${feature.title} demonstration`}
-                        className="w-full h-auto rounded-2xl shadow-2xl aspect-[387/581] object-cover"
-                      />
+                      <div className="relative w-full aspect-[387/581] rounded-2xl overflow-hidden shadow-2xl">
+                        <Image
+                          src={feature.image}
+                          alt={`${feature.title} demonstration`}
+                          fill
+                          className="object-cover"
+                        />
+                      </div>
                     </div>
                   </div>
                 </div>
@@ -176,3 +139,18 @@ export const FeaturesSection = ({ onTryNow }: FeaturesSectionProps) => {
     </div>
   );
 };
+
+const ChevronIcon = ({ direction }: { direction: "left" | "right" }) => (
+  <svg
+    className={`w-8 h-12 lg:w-10 lg:h-16 text-glam-tertiary ${direction === "left" ? "rotate-180" : ""}`}
+    viewBox="0 0 42 68"
+    fill="none"
+    xmlns="http://www.w3.org/2000/svg"
+  >
+    <path
+      opacity="0.5"
+      d="M27.0484 33.5457L0.881836 7.45455L8.35782 0.00012207L42.0004 33.5457L8.35782 67.0913L0.881836 59.6368L27.0484 33.5457Z"
+      fill="currentColor"
+    />
+  </svg>
+);
