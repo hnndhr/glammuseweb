@@ -57,7 +57,7 @@ export const FeaturesSection = ({ onTryNow }: FeaturesSectionProps) => {
   };
 
   return (
-    <div className="bg-medium pb-16 lg:pb-24">
+    <div id="features-section" className="bg-medium pb-16 lg:pb-24">
       {/* Header */}
       <div className="bg-gradient-to-r from-[#241910] via-[#20160F] to-[#17100C] py-12 lg:py-16 mb-16 opacity-75">
         <div className="container mx-auto px-6 lg:px-16">
