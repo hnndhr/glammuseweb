@@ -14,6 +14,7 @@ interface WardrobeCardProps {
     shoes?: string;
   };
   onClick?: () => void;
+  onDelete?: () => void;
 }
 
 interface Look {
@@ -22,7 +23,7 @@ interface Look {
   shoes: string;
 }
 
-const WardrobeCard = ({ type, images, onClick }: WardrobeCardProps) => {
+const WardrobeCard = ({ type, images, onClick, onDelete }: WardrobeCardProps) => {
   if (type === "add") {
     return (
       <div
@@ -51,23 +52,23 @@ const WardrobeCard = ({ type, images, onClick }: WardrobeCardProps) => {
 
   return (
   <div
-    className="w-full h-[795px] border-2 border-gray-800 shadow-md cursor-pointer hover:shadow-lg bg-white relative overflow-hidden"
+    className="w-full h-[795px] border-2 border-gray-800 shadow-md cursor-pointer hover:shadow-lg bg-white relative overflow-hidden pt-6 pb-16"
     onClick={onClick}
   >
-    <div className="absolute inset-0 flex flex-col">
+    <div className="flex flex-col items-center justify-center h-full">
       {images?.top && (
-        <div className="flex items-center justify-center" style={{ height: "280px" }}>
+        <div className="mb-2">
           <Image
             src={images.top}
             alt="Top"
             width={200}
-            height={280}
+            height={300}
             className="object-contain"
           />
         </div>
       )}
       {images?.bottom && (
-        <div className="flex items-center justify-center" style={{ height: "320px" }}>
+        <div className="mb-2">
           <Image
             src={images.bottom}
             alt="Bottom"
@@ -78,7 +79,7 @@ const WardrobeCard = ({ type, images, onClick }: WardrobeCardProps) => {
         </div>
       )}
       {images?.shoes && (
-        <div className="flex items-center justify-center" style={{ height: "195px" }}>
+        <div>
           <Image
             src={images.shoes}
             alt="Shoes"
@@ -89,9 +90,21 @@ const WardrobeCard = ({ type, images, onClick }: WardrobeCardProps) => {
         </div>
       )}
     </div>
+
+    {type === "outfit" && onDelete && (
+      <button
+        onClick={(e) => {
+          e.stopPropagation();
+          onDelete?.();
+        }}
+        className="absolute bottom-3 right-3 bg-[#C2926D] text-white text-base px-4 py-2 rounded-md hover:bg-[#a27554] shadow-md"
+      >
+        Delete
+      </button>
+    )}
   </div>
-);
-}
+  );
+};
 
 export default function WardrobePage() {
   const router = useRouter();
@@ -108,9 +121,16 @@ export default function WardrobePage() {
     router.push("/wardrobe/capsule");
   }, [router]);
 
+  const handleDeleteLook = (index: number) => {
+    const updatedLooks = [...savedLooks];
+    updatedLooks.splice(index, 1); // hapus 1 item di posisi index
+    setSavedLooks(updatedLooks);
+    localStorage.setItem("savedLooks", JSON.stringify(updatedLooks));
+  };
+
   return (
     <div className="min-h-screen bg-white">
-
+      <Header activePage="features" />
       {/* Hero Section */}
       <div className="relative w-full h-[250px] bg-gray-900">
         <Image
@@ -119,7 +139,7 @@ export default function WardrobePage() {
           fill
           className="object-cover"
         />
-        <div className="absolute inset-0 bg-black opacity-60"></div>
+        <div className="absolute inset-0 bg-black opacity-60" />
         <div className="absolute inset-0 flex items-center justify-center">
           <h1 className="text-white text-4xl md:text-5xl lg:text-6xl font-normal tracking-wide text-center">
             Wardrobe
@@ -146,6 +166,7 @@ export default function WardrobePage() {
                 bottom: look.bottom,
                 shoes: look.shoes,
               }}
+              onDelete={() => handleDeleteLook(index)}
             />
           ))}
         </div>
@@ -153,10 +174,8 @@ export default function WardrobePage() {
 
       <Footer
         onSocialClick={() => {}}
-        onLinkClick={() =>
-          window.scrollTo({ top: 0, behavior: "smooth" })
-        }
+        onLinkClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
       />
-        </div>
+    </div>
   );
 }
