@@ -15,6 +15,7 @@ interface SubscriptionSectionProps {
   planCost?: string;
   renewalDate?: string;
   onChangePlan?: (planId: string) => void;
+  onViewAnalysisDetails?: (analysisId: string) => void; // ✅ Tambahkan prop ini
 }
 
 const subscriptionPlans: SubscriptionPlan[] = [
@@ -45,7 +46,8 @@ export const SubscriptionSection: React.FC<SubscriptionSectionProps> = ({
   currentPlan = 'Iconic Plan',
   planCost = 'Rp169.000',
   renewalDate = 'Dec 25, 2025',
-  onChangePlan
+  onChangePlan,
+  onViewAnalysisDetails // ✅ Terima prop ini
 }) => {
   const [showChangePlan, setShowChangePlan] = useState(false);
   const [selectedPlan, setSelectedPlan] = useState<SubscriptionPlan | null>(null);
@@ -70,12 +72,7 @@ export const SubscriptionSection: React.FC<SubscriptionSectionProps> = ({
   };
 
   return (
-    <section
-        className={`bg-white shadow-md border relative flex flex-col items-stretch w-full max-w-[1362px] mt-[45px] pt-[15px] pb-[45px] px-[52px] rounded-[20px] border-[rgba(74,59,48,0.7)] border-solid transition-all duration-700 ease-in-out overflow-hidden ${
-          showChangePlan ? 'max-h-[1600px]' : 'max-h-[600px]'
-        }`}
-        aria-label="Subscription information"
-      >
+    <section className={`bg-white shadow-md border relative flex flex-col items-stretch w-full max-w-[1362px] mt-[45px] pt-[15px] pb-[45px] px-[52px] rounded-[20px] border-[rgba(74,59,48,0.7)] border-solid transition-all duration-700 ease-in-out overflow-hidden ${showChangePlan ? 'max-h-[1600px]' : 'max-h-[600px]'}`}>
       <header className="text-tertiary text-[40px] font-normal font-hanuman text-center">
         <h2>Subscription</h2>
       </header>
@@ -83,7 +80,6 @@ export const SubscriptionSection: React.FC<SubscriptionSectionProps> = ({
       <button
         onClick={() => setShowChangePlan(true)}
         className="absolute z-10 flex w-[200px] text-lg text-white font-bold h-[50px] right-[52px] top-5 hover:opacity-90 transition-opacity"
-        aria-label="Change subscription plan"
       >
         <div className="bg-tertiary flex items-center gap-2 px-[18px] py-2.5 rounded-full text-white">
           <Pencil size={20} />
@@ -123,6 +119,18 @@ export const SubscriptionSection: React.FC<SubscriptionSectionProps> = ({
         </article>
       </div>
 
+      {/* Optional View Analysis Button */}
+      {onViewAnalysisDetails && (
+        <div className="text-center mt-10">
+          <button
+            onClick={() => onViewAnalysisDetails("analysis-001")}
+            className="px-6 py-2 text-lg font-medium text-white bg-tertiary rounded-full hover:bg-darkest transition"
+          >
+            View Your Analysis Details
+          </button>
+        </div>
+      )}
+
       {showChangePlan && (
         <div className="z-0 flex min-h-[450px] w-full items-center gap-10 text-tertiary font-normal justify-center flex-wrap mt-[30px]">
           {subscriptionPlans.map((plan) => (
@@ -157,7 +165,7 @@ export const SubscriptionSection: React.FC<SubscriptionSectionProps> = ({
       )}
 
       {selectedPlan && (
-        <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50" role="dialog" aria-modal="true">
+        <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
           <div className="bg-white p-6 rounded-lg max-w-md w-full mx-4">
             <h3 className="text-xl font-bold mb-4 text-tertiary">Confirm Plan Change</h3>
             <p className="mb-4 text-gray-600">
