@@ -7,10 +7,6 @@ import ColorPalette from "@/components/color/result/Autumn/ColorPalette";
 import { Footer } from "@/components/layout/Footer";
 
 export default function ResultColorAutumnPage() {
-  const handleSignOut = () => {
-    console.log("User signed out");
-  };
-
   const handleSocialClick = (platform: string) => {
     console.log("Social clicked:", platform);
   };
@@ -22,7 +18,7 @@ export default function ResultColorAutumnPage() {
 
   return (
     <div className="min-h-screen bg-white">
-      <Header onSignOut={handleSignOut} />
+      <Header activePage="features"/>
 
       <HeroSection />
 

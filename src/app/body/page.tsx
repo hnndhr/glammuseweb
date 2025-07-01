@@ -21,11 +21,7 @@ export default function BodyShapePage() {
     hip: "",
     highHip: "",
   });
-
-  const handleSignOut = () => {
-    console.log("User signed out");
-  };
-
+  
   const handleInputChange = (field: keyof Measurements, value: string) => {
     setMeasurements((prev) => ({
       ...prev,
@@ -146,7 +142,7 @@ export default function BodyShapePage() {
 
   return (
     <div className="min-h-screen bg-white">
-      <Header isLoggedIn={true} activePage="features" onSignOut={handleSignOut} />
+      <Header activePage="features"/>
 
       {/* Hero Section */}
       <div className="relative w-full h-[250px] flex items-center justify-center overflow-hidden">

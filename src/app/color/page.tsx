@@ -40,10 +40,6 @@ export default function ColorPage() {
     },
   };
 
-  const handleSignOut = () => {
-    console.log("User signed out");
-  };
-
   const handleSeeDescription = () => {
     router.push(`/color/result/${currentSeason.toLowerCase()}`);
   };
@@ -73,7 +69,7 @@ export default function ColorPage() {
 
   return (
     <div className="min-h-screen bg-white">
-      <Header isLoggedIn={true} activePage="features" onSignOut={handleSignOut} />
+      <Header activePage="features" />
 
       <HeroColor />
 

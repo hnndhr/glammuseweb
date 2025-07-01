@@ -31,13 +31,9 @@ const Hero = ({
 };
 
 export default function ArticlePage() {
-  const handleSignOut = () => {
-    console.log("User signed out");
-  };
-
   return (
     <div className="min-h-screen bg-white">
-      <Header isLoggedIn={true} activePage="beautypedia" onSignOut={handleSignOut} />
+      <Header activePage="beautypedia"/>
 
       <main className="w-full">
         <Hero

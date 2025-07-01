@@ -5,13 +5,10 @@ import { Header } from "@/components/layout/Header";
 import { Footer } from "@/components/layout/Footer";
 
 export default function AboutUsPage() {
-  const handleSignOut = () => {
-    console.log("User signed out");
-  };
 
   return (
     <div className="min-h-screen bg-white">
-      <Header isLoggedIn={true} activePage="about" onSignOut={handleSignOut} />
+      <Header activePage="about" />
 
       <main className="w-full">
         {/* Hero Section */}
