@@ -15,21 +15,17 @@ export default function AboutUsPage() {
 
       <main className="w-full">
         {/* Hero Section */}
-        <div className="relative w-full h-[904px] bg-glam-medium overflow-hidden">
+        <div className="relative w-full h-[904px] overflow-hidden">
           {/* Background Image */}
           <div
             className="absolute inset-0 w-full h-full bg-cover bg-center bg-no-repeat"
             style={{
-              backgroundImage:
-                "url('https://i.pinimg.com/736x/7b/35/df/7b35df0dd5aa7a5508eea4dbce31997d.jpg')",
+              backgroundImage: "url('/Bg/wardrobe.png')",
             }}
           />
 
-          {/* Dark Overlay */}
-          <div className="absolute inset-0 bg-black bg-opacity-60" />
-
           {/* Content */}
-          <div className="relative z-10 flex flex-col items-center justify-center h-full px-4">
+          <div className="relative z-[2] flex flex-col items-center justify-center h-full px-4">
             <h1 className="text-white text-center font-aclonica text-[120px] md:text-[150px] lg:text-[180px] font-normal leading-[150%] tracking-[3.6px] mb-8">
               Glammuse
             </h1>
@@ -39,6 +35,7 @@ export default function AboutUsPage() {
           </div>
         </div>
       </main>
+
       <Footer />
     </div>
   );
