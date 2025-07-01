@@ -50,7 +50,6 @@ export default function CapsuleWardrobePage() {
     bottom: outfits[0].bottom ?? "",
     shoes: outfits[0].shoes ?? "",
   });
-  const [savedOutfits, setSavedOutfits] = useState<PreviewType[]>([]);
 
   useEffect(() => {
     const saved = localStorage.getItem("savedOutfits");
@@ -58,6 +57,8 @@ export default function CapsuleWardrobePage() {
       setSavedOutfits(JSON.parse(saved));
     }
   }, []);
+
+  const [savedOutfits, setSavedOutfits] = useState<PreviewType[]>([]);
 
   const handleItemClick = (image: string) => {
     if (activeCategory === "Upper Body") {
@@ -70,11 +71,20 @@ export default function CapsuleWardrobePage() {
   };
 
   const handleSave = () => {
-  const existing = JSON.parse(localStorage.getItem("savedLooks") || "[]");
-  const updated = [...existing, preview];
-  localStorage.setItem("savedLooks", JSON.stringify(updated));
-  alert("Look saved!");
-    };
+    const existing = JSON.parse(localStorage.getItem("savedLooks") || "[]");
+    const updated = [...existing, preview];
+    localStorage.setItem("savedLooks", JSON.stringify(updated));
+    alert("Look saved!");
+  };
+
+  const handleRemoveItem = (category: Category) => {
+    setPreview((prev) => ({
+      ...prev,
+      ...(category === "Upper Body" && { top: "" }),
+      ...(category === "Lower Body" && { bottom: "" }),
+      ...(category === "Shoes" && { shoes: "" }),
+    }));
+  };
 
   const getItems = () => {
     return outfits
@@ -88,9 +98,11 @@ export default function CapsuleWardrobePage() {
       .filter((img): img is string => Boolean(img));
   };
 
+  const isDressOnly = preview.top && !preview.bottom;
+
   return (
     <div className="min-h-screen bg-white">
-
+      <Header activePage="features" />
       {/* Hero Section */}
       <div className="relative w-full h-[250px] bg-gray-900">
         <Image
@@ -107,7 +119,7 @@ export default function CapsuleWardrobePage() {
 
       {/* Main Content */}
       <div className="px-10 py-8 grid grid-cols-4 gap-8">
-        {/*sidebar*/}
+        {/* Sidebar */}
         <div className="flex flex-col items-center justify-center gap-6 border-r pr-4">
           {categories.map((cat) => (
             <button
@@ -145,31 +157,67 @@ export default function CapsuleWardrobePage() {
         {/* Preview */}
         <div className="border-l pl-6">
           <h2 className="text-xl font-semibold mb-4 text-center border-b pb-2">Preview</h2>
-          <div className="flex flex-col items-center gap-3">
+          <div className="flex flex-col items-center gap-4">
             {preview.top && (
-              <img src={preview.top} alt="Top Preview" className="h-40 object-contain" />
+              <div className="flex flex-col items-center">
+                <img
+                  src={preview.top}
+                  alt="Top Preview"
+                  className={`object-contain ${isDressOnly ? "h-64" : "h-40"}`}
+                />
+                <button
+                  onClick={() => handleRemoveItem("Upper Body")}
+                  className="mt-1 text-xs text-[#C2926D] hover:underline"
+                >
+                  Remove Upper
+                </button>
+              </div>
             )}
             {preview.bottom && (
-              <img src={preview.bottom} alt="Bottom Preview" className="h-32 object-contain" />
+              <div className="flex flex-col items-center">
+                <img src={preview.bottom} alt="Bottom Preview" className="h-32 object-contain" />
+                <button
+                  onClick={() => handleRemoveItem("Lower Body")}
+                  className="mt-1 text-xs text-[#C2926D] hover:underline"
+                >
+                  Remove Lower
+                </button>
+              </div>
             )}
             {preview.shoes && (
-              <img src={preview.shoes} alt="Shoes Preview" className="h-24 object-contain" />
+              <div className="flex flex-col items-center mt-2">
+                <img
+                  src={preview.shoes}
+                  alt="Shoes Preview"
+                  className={`${!preview.bottom ? "h-20" : "h-24"} object-contain`}
+                />
+                <button
+                  onClick={() => handleRemoveItem("Shoes")}
+                  className="mt-1 text-xs text-[#C2926D] hover:underline"
+                >
+                  Remove Shoes
+                </button>
+              </div>
             )}
           </div>
+
+          {/* Save Button */}
           <button
             onClick={handleSave}
             className="mt-6 px-4 py-2 bg-[#3E2E22] text-white rounded-lg mx-auto block"
           >
             Save Look
           </button>
+
+          {/* Back Button */}
           <div className="mt-4 flex justify-center">
-          <button
-            onClick={() => router.push("/wardrobe")}
-            className="mt-6 px-4 py-2 bg-[#3E2E22] text-white rounded-lg mx-auto block"
+            <button
+              onClick={() => router.push("/wardrobe")}
+              className="px-4 py-2 bg-[#3E2E22] text-white rounded-lg"
             >
-            Back to Wardrobe
+              Back to Wardrobe
             </button>
-            </div>
+          </div>
         </div>
       </div>
 
