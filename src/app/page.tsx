@@ -34,10 +34,10 @@ export default function HomePage() {
   };
 
   return (
-    <div className="bg-white pt-5">
-      <Header activePage="home" onSignOut={handleSignOut} />
+    <div className="min-h-screen bg-white">
+      <Header onSignOut={handleSignOut} />
 
-      <main className="w-full pt-5">
+      <main className="w-full">
         <HeroSection onGetStarted={handleGetStarted} />
         <QuoteSection />
         <FeaturesSection onTryNow={handleTryNow} />

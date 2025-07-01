@@ -61,8 +61,8 @@ export default function ProfilePage() {
   };
 
   return (
-    <div className="bg-white pt-[34px]">
-      <Header activePage="profile" onSignOut={handleSignOut} />
+    <div className="min-h-screen bg-white">
+      <Header onSignOut={handleSignOut} />
 
       <main className="flex w-full flex-col pl-[35px] max-md:max-w-full max-md:pl-5">
         <ProfileSection

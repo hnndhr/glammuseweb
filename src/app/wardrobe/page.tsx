@@ -1,8 +1,9 @@
-'use client'; // Jika pakai App Router
+"use client";
 
 import Image from "next/image";
-import Head from "next/head";
 import { useCallback } from "react";
+import { Header } from "@/components/layout/Header";
+import { Footer } from "@/components/layout/Footer";
 
 interface WardrobeCardProps {
   type: "add" | "outfit";
@@ -85,7 +86,7 @@ const WardrobeCard = ({ type, images, onClick }: WardrobeCardProps) => {
   );
 };
 
-const WardrobePage = () => {
+export default function WardrobePage() {
   const outfits = [
     {
       id: 1,
@@ -136,11 +137,22 @@ const WardrobePage = () => {
     console.log("Outfit clicked:", id);
   }, []);
 
+  const handleSignOut = () => {
+    console.log("User signed out");
+  };
+
+  const handleSocialClick = (platform: string) => {
+    console.log("Social clicked:", platform);
+  };
+
+  const handleFooterLinkClick = (link: string) => {
+    console.log("Footer link clicked:", link);
+    window.scrollTo({ top: 0, behavior: "smooth" });
+  };
+
   return (
-    <div className="min-h-screen bg-white flex flex-col">
-      <Head>
-        <title>Wardrobe | Beauty & Fashion Assistant</title>
-      </Head>
+    <div className="min-h-screen bg-white">
+      <Header onSignOut={handleSignOut} />
 
       {/* Hero Section */}
       <div className="relative w-full h-[250px] bg-gray-900">
@@ -159,7 +171,7 @@ const WardrobePage = () => {
       </div>
 
       {/* Outfit Grid */}
-      <div className="flex-1 px-4 sm:px-8 md:px-16 lg:px-[200px] py-5">
+      <main className="flex-1 px-4 sm:px-8 md:px-16 lg:px-[200px] py-5">
         <div
           className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-2.5 p-5"
           style={{
@@ -177,9 +189,12 @@ const WardrobePage = () => {
             />
           ))}
         </div>
-      </div>
+      </main>
+
+      <Footer
+        onSocialClick={handleSocialClick}
+        onLinkClick={handleFooterLinkClick}
+      />
     </div>
   );
-};
-
-export default WardrobePage;
+}

@@ -19,7 +19,7 @@ export const Header: React.FC<HeaderProps> = ({ onSignOut, activePage = "home" }
 
   const getLinkClass = (page: string) => {
     const baseClass =
-      "self-stretch my-auto transition-colors duration-200 hover:text-primary font-manrope";
+      "transition-colors duration-200 hover:text-primary font-manrope";
     const activeClass = "text-primary font-bold";
     const inactiveClass = "text-[#141414] font-normal";
 
@@ -27,8 +27,8 @@ export const Header: React.FC<HeaderProps> = ({ onSignOut, activePage = "home" }
   };
 
   return (
-    <header className="flex w-full flex-col pl-[35px] max-md:max-w-full max-md:pl-5 font-manrope">
-      <div className="self-stretch flex w-full items-stretch gap-5 flex-wrap justify-between max-md:max-w-full">
+    <header className="w-full bg-white shadow-md font-manrope">
+      <div className="flex items-center justify-between w-full px-[35px] py-4 max-md:flex-col max-md:items-start max-md:gap-4">
         {/* Logo and Brand */}
         <div className="flex items-center gap-3">
           <div className="w-10 h-10 flex items-center justify-center">
@@ -62,11 +62,11 @@ export const Header: React.FC<HeaderProps> = ({ onSignOut, activePage = "home" }
 
         {/* Navigation */}
         <nav
-          className="flex items-center gap-[33px] text-base flex-wrap px-[30px] max-md:max-w-full max-md:px-5"
+          className="flex items-center gap-[33px] text-base flex-wrap max-md:flex-col max-md:items-start"
           role="navigation"
           aria-label="Main navigation"
         >
-          <div className="self-stretch flex min-w-60 items-center gap-10 flex-wrap my-auto max-md:max-w-full">
+          <div className="flex items-center gap-10 flex-wrap max-md:flex-col max-md:items-start">
             <Link href="/" className={getLinkClass("home")} aria-current={activePage === "home" ? "page" : undefined}>
               Home
             </Link>
@@ -76,7 +76,7 @@ export const Header: React.FC<HeaderProps> = ({ onSignOut, activePage = "home" }
             <Link href="/article" className={getLinkClass("beautypedia")} aria-current={activePage === "beautypedia" ? "page" : undefined}>
               Beautypedia
             </Link>
-            <Link href="/about-us" className={getLinkClass("about")} aria-current={activePage === "about" ? "page" : undefined}>
+            <Link href="/about" className={getLinkClass("about")} aria-current={activePage === "about" ? "page" : undefined}>
               About Us
             </Link>
             <Link href="/profile" className={getLinkClass("profile")} aria-current={activePage === "profile" ? "page" : undefined}>
@@ -87,7 +87,7 @@ export const Header: React.FC<HeaderProps> = ({ onSignOut, activePage = "home" }
           <button
             type="button"
             onClick={handleSignOut}
-            className="text-white self-stretch bg-primary gap-2.5 font-normal text-center my-auto px-6 py-3.5 rounded-[5px] transition-colors duration-200 hover:bg-darkest max-md:px-5 font-manrope"
+            className="text-white bg-primary gap-2.5 font-normal text-center px-6 py-3.5 rounded-[5px] transition-colors duration-200 hover:bg-darkest font-manrope"
             aria-label="Sign out of account"
           >
             Sign Out
