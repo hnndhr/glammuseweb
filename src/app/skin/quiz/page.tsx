@@ -299,7 +299,7 @@ export default function SkinTypeQuizPage() {
         answers[quizQuestions[currentQuestionIndex - 1].id] || null
       );
     } else {
-      router.push("/skin-type-quiz");
+      router.push("/skin");
     }
   };
 
