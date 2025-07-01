@@ -49,7 +49,7 @@ export async function PUT(
           firstName,
           lastName,
           phone,
-          ...(profilePicture && { profilePicture }), // hanya update jika ada
+          ...(profilePicture && { profilePicture }), 
         },
       },
       { new: true }
