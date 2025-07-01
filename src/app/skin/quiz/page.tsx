@@ -332,32 +332,40 @@ export default function SkinTypeQuizPage() {
             </h2>
           </div>
 
-          {/* Options */}
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+          {/* Option */}
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-5">
             {currentQuestion.options.map((option) => (
               <button
                 key={option.id}
                 onClick={() => handleOptionSelect(option.id)}
-                className={`group relative w-full h-[350px] bg-white rounded-[20px] border border-[#4A3B30] border-opacity-70 shadow-lg transition-all duration-300 hover:shadow-xl hover:scale-105 focus:outline-none focus:ring-2 focus:ring-[#744B28] ${
+                className={`group relative w-full max-w-sm h-[420px] bg-white rounded-[20px] border border-[#4A3B30]/70 shadow-lg transition-all duration-300 hover:shadow-xl hover:scale-105 focus:outline-none focus:ring-2 focus:ring-[#744B28] ${
                   selectedOption === option.id
                     ? "ring-2 ring-[#744B28] bg-[#FBF5F0]"
                     : ""
                 }`}
               >
-                <div className="relative w-full h-[180px] overflow-hidden rounded-t-[20px] p-4">
-                  <Image
-                    src={option.imageUrl}
-                    alt={option.description}
-                    fill
-                    className="object-cover rounded-lg"
-                  />
+                {/* Kontainer Flex Vertikal */}
+                <div className="flex flex-col h-full">
+                  <div className="w-full aspect-[4/3] relative overflow-hidden rounded-t-[20px]">
+                    <Image
+                      src={option.imageUrl}
+                      alt={option.description}
+                      fill
+                      className="object-cover"
+                      sizes="100%"
+                      priority
+                    />
+                  </div>
+
+                  {/* Deskripsi tengah */}
+                  <div className="flex-grow px-3 pb-3 flex items-center justify-center">
+                    <p className="text-[#4A3B30] font-manrope text-base text-center leading-relaxed">
+                      {option.description}
+                    </p>
+                  </div>
                 </div>
-                <div className="w-[250px] h-px bg-black bg-opacity-30 mx-auto mb-4" />
-                <div className="px-6 pb-6">
-                  <p className="text-[#4A3B30] font-manrope text-lg text-left">
-                    {option.description}
-                  </p>
-                </div>
+
+                {/* Centang jika dipilih */}
                 {selectedOption === option.id && (
                   <div className="absolute top-4 right-4 w-6 h-6 bg-[#744B28] rounded-full flex items-center justify-center">
                     <svg
