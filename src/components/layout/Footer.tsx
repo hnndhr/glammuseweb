@@ -1,6 +1,6 @@
 import React from "react";
 import { useRouter } from "next/navigation";
-import { Instagram, Twitter, Music2} from "lucide-react";
+import { Instagram, Twitter, Music2 } from "lucide-react";
 
 interface FooterProps {
   onSocialClick?: (platform: string) => void;
@@ -8,14 +8,10 @@ interface FooterProps {
 }
 
 export const Footer: React.FC<FooterProps> = ({
-  onSocialClick,
   onLinkClick,
 }) => {
   const router = useRouter();
 
-  const handleSocialClick = (platform: string) => {
-    onSocialClick?.(platform);
-  };
 
   const handleLinkClick = (link: string) => {
     if (onLinkClick) {
@@ -95,18 +91,35 @@ export const Footer: React.FC<FooterProps> = ({
               {/* Socials */}
               <div className="flex gap-6">
                 {[
-                  { name: "instagram", label: "Instagram", Icon: Instagram },
-                  { name: "tiktok", label: "TikTok", Icon: Music2 },
-                  { name: "twitter", label: "Twitter", Icon: Twitter },
-                ].map(({ name, label, Icon }) => (
-                  <button
+                  {
+                    name: "instagram",
+                    label: "Instagram",
+                    Icon: Instagram,
+                    url: "https://instagram.com/",
+                  },
+                  {
+                    name: "tiktok",
+                    label: "TikTok",
+                    Icon: Music2,
+                    url: "https://tiktok.com/",
+                  },
+                  {
+                    name: "twitter",
+                    label: "Twitter",
+                    Icon: Twitter,
+                    url: "https://twitter.com/",
+                  },
+                ].map(({ name, label, Icon, url }) => (
+                  <a
                     key={name}
-                    onClick={() => handleSocialClick(name)}
+                    href={url}
+                    target="_blank"
+                    rel="noopener noreferrer"
                     aria-label={`Follow us on ${label}`}
                     className="hover:opacity-80 transition-opacity duration-200 p-2 rounded-full hover:bg-white/10"
                   >
                     <Icon className="w-6 h-6 text-white" />
-                  </button>
+                  </a>
                 ))}
               </div>
             </div>
