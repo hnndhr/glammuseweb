@@ -349,10 +349,6 @@ export default function BodyTypeResultsPage() {
     router.push("/");
   };
 
-  const handleSignOut = () => {
-    console.log("User signed out");
-  };
-
   const handleSocialClick = (platform: string) => {
     console.log("Social media clicked:", platform);
   };
