@@ -26,9 +26,9 @@ export default function SkinPage() {
   };
 
   return (
-    <div className="min-h-screen pt-5">
+    <div className="min-h-screen bg-white">
       <Header onSignOut={handleSignOut} />
-      <main className="w-full pt-5">
+      <main className="w-full">
         {/* Hero Section */}
         <div className="relative w-full h-[904px] flex items-center justify-center overflow-hidden">
           {/* Background Image */}

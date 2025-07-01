@@ -10,9 +10,10 @@ export default function AboutUsPage() {
   };
 
   return (
-    <div className="min-h-screen bg-white pt-5">
-      <Header activePage="about" onSignOut={handleSignOut} />
-      <main className="w-full pt-5">
+    <div className="min-h-screen bg-white">
+      <Header onSignOut={handleSignOut} />
+
+      <main className="w-full">
         {/* Hero Section */}
         <div className="relative w-full h-[904px] bg-glam-medium overflow-hidden">
           {/* Background Image */}
