@@ -146,7 +146,7 @@ export default function BodyShapePage() {
 
   return (
     <div className="min-h-screen bg-white">
-      <Header onSignOut={handleSignOut} />
+      <Header activePage="features" onSignOut={handleSignOut} />
 
       {/* Hero Section */}
       <div className="relative w-full h-[250px] flex items-center justify-center overflow-hidden">
@@ -157,7 +157,7 @@ export default function BodyShapePage() {
               "url('https://i.pinimg.com/736x/04/9a/13/049a138906420e68cc3ad6c3a0b293c9.jpg')",
           }}
         />
-        <div className="absolute inset-0 bg-black bg-opacity-60" />
+        <div className="absolute inset-0 bg-black opacity-60"></div>
         <div className="relative z-10 w-full max-w-[1000px] mx-auto px-6 text-center">
           <h1 className="text-white font-playfair text-4xl md:text-5xl lg:text-6xl font-normal leading-[150%] tracking-[1.28px]">
             Body Type Calculator
