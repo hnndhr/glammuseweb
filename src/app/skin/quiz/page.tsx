@@ -288,7 +288,7 @@ export default function SkinTypeQuizPage() {
     } else {
       const skinType = determineSkinType(answers);
       console.log("Quiz completed:", answers, "Skin type:", skinType);
-      router.push(`/skin-type-results?type=${skinType}`);
+      router.push(`/skin/results?type=${skinType}`);
     }
   };
 

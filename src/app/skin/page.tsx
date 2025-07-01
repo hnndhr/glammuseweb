@@ -13,8 +13,8 @@ export default function SkinPage() {
   };
 
   const handleFindYourGlow = () => {
-    console.log("Find Your Glow clicked - starting skin type test");
-    router.push("/skin-type-quiz");
+  console.log("Find Your Glow clicked - starting skin type test");
+  router.push("/skin/quiz");
   };
 
   const handleSocialClick = (platform: string) => {
