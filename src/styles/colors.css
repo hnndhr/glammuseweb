@@ -1,68 +1,91 @@
-/* Glammuse Color Palette */
+/* ===============================
+   Glammuse Custom Color Palette
+   =============================== */
+
 :root {
   /* Primary Colors */
   --color-darkest: #623B1C;
   --color-primary: #744B28;
   --color-secondary: #422A3C;
   --color-tertiary: #4A3B30;
-  
-  /* Accent Colors */
+
+  /* Accent */
   --color-accent: #43CD31;
-  
-  /* Neutral Browns */
+
+  /* Neutrals / Browns */
   --color-light: #CDA582;
   --color-medium: #937154;
   --color-dark: #936C4B;
   --color-tan: #D9B79A;
-  
+
   /* Light Tones */
   --color-cream: #F1E1C7;
   --color-peach: #FFE3CB;
   --color-ivory: #FFEFD6;
 }
 
-/* Utility Classes */
-.bg-darkest { background-color: var(--color-darkest); }
-.bg-primary { background-color: var(--color-primary); }
+/* ===============================
+   Background Color Utilities
+   =============================== */
+
+.bg-darkest   { background-color: var(--color-darkest); }
+.bg-primary   { background-color: var(--color-primary); }
 .bg-secondary { background-color: var(--color-secondary); }
-.bg-tertiary { background-color: var(--color-tertiary); }
-.bg-accent { background-color: var(--color-accent); }
-.bg-light { background-color: var(--color-light); }
-.bg-medium { background-color: var(--color-medium); }
-.bg-dark { background-color: var(--color-dark); }
-.bg-tan { background-color: var(--color-tan); }
-.bg-cream { background-color: var(--color-cream); }
-.bg-peach { background-color: var(--color-peach); }
-.bg-ivory { background-color: var(--color-ivory); }
+.bg-tertiary  { background-color: var(--color-tertiary); }
+.bg-accent    { background-color: var(--color-accent); }
 
-.text-darkest { color: var(--color-darkest); }
-.text-primary { color: var(--color-primary); }
+.bg-light     { background-color: var(--color-light); }
+.bg-medium    { background-color: var(--color-medium); }
+.bg-dark      { background-color: var(--color-dark); }
+.bg-tan       { background-color: var(--color-tan); }
+
+.bg-cream     { background-color: var(--color-cream); }
+.bg-peach     { background-color: var(--color-peach); }
+.bg-ivory     { background-color: var(--color-ivory); }
+
+/* ===============================
+   Text Color Utilities
+   =============================== */
+
+.text-darkest   { color: var(--color-darkest); }
+.text-primary   { color: var(--color-primary); }
 .text-secondary { color: var(--color-secondary); }
-.text-tertiary { color: var(--color-tertiary); }
-.text-accent { color: var(--color-accent); }
-.text-light { color: var(--color-light); }
-.text-medium { color: var(--color-medium); }
-.text-dark { color: var(--color-dark); }
-.text-tan { color: var(--color-tan); }
-.text-cream { color: var(--color-cream); }
-.text-peach { color: var(--color-peach); }
-.text-ivory { color: var(--color-ivory); }
+.text-tertiary  { color: var(--color-tertiary); }
+.text-accent    { color: var(--color-accent); }
 
-.border-darkest { border-color: var(--color-darkest); }
-.border-primary { border-color: var(--color-primary); }
+.text-light     { color: var(--color-light); }
+.text-medium    { color: var(--color-medium); }
+.text-dark      { color: var(--color-dark); }
+.text-tan       { color: var(--color-tan); }
+
+.text-cream     { color: var(--color-cream); }
+.text-peach     { color: var(--color-peach); }
+.text-ivory     { color: var(--color-ivory); }
+
+/* ===============================
+   Border Color Utilities
+   =============================== */
+
+.border-darkest   { border-color: var(--color-darkest); }
+.border-primary   { border-color: var(--color-primary); }
 .border-secondary { border-color: var(--color-secondary); }
-.border-tertiary { border-color: var(--color-tertiary); }
-.border-accent { border-color: var(--color-accent); }
-.border-light { border-color: var(--color-light); }
-.border-medium { border-color: var(--color-medium); }
-.border-dark { border-color: var(--color-dark); }
-.border-tan { border-color: var(--color-tan); }
-.border-cream { border-color: var(--color-cream); }
-.border-peach { border-color: var(--color-peach); }
-.border-ivory { border-color: var(--color-ivory); }
+.border-tertiary  { border-color: var(--color-tertiary); }
+.border-accent    { border-color: var(--color-accent); }
 
-/* Hover states */
-.hover\:text-primary:hover { color: var(--color-primary); }
+.border-light     { border-color: var(--color-light); }
+.border-medium    { border-color: var(--color-medium); }
+.border-dark      { border-color: var(--color-dark); }
+.border-tan       { border-color: var(--color-tan); }
+
+.border-cream     { border-color: var(--color-cream); }
+.border-peach     { border-color: var(--color-peach); }
+.border-ivory     { border-color: var(--color-ivory); }
+
+/* ===============================
+   Hover States (Custom)
+   =============================== */
+
+.hover\:text-primary:hover   { color: var(--color-primary); }
 .hover\:text-secondary:hover { color: var(--color-secondary); }
-.hover\:bg-primary:hover { background-color: var(--color-primary); }
-.hover\:bg-darkest:hover { background-color: var(--color-darkest); }
+.hover\:bg-primary:hover     { background-color: var(--color-primary); }
+.hover\:bg-darkest:hover     { background-color: var(--color-darkest); }
