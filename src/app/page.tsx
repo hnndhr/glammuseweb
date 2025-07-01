@@ -8,6 +8,7 @@ import { QuoteSection } from "@/components/landing/QuoteSection";
 import { FeaturesSection } from "@/components/landing/FeaturesSection";
 import { BeautypediaSection } from "@/components/blog/BeautypediaSections";
 import { Footer } from "@/components/layout/Footer";
+import "./globals.css";
 
 export default function HomePage() {
   const router = useRouter();

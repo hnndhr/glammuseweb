@@ -1,4 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Syne&family=Playfair+Display&family=Hanuman&family=Manrope&family=Marck+Script&family=Port+Lligat+Slab&family=Courgette&family=Medieval+Sharp&family=Inter&family=Aclonica&family=Open+Sans&family=Lora&display=swap');
 @import "tailwindcss";
 
-/* Import custom colors setelah Tailwind */
 @import "../styles/colors.css";
+@import "../styles/fonts.css";
