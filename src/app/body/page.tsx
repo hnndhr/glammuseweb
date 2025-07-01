@@ -139,7 +139,7 @@ export default function BodyShapePage() {
     const bodyType = calculateBodyType();
     if (bodyType.type !== "Invalid") {
       router.push(
-        `/body-shape/results?type=${encodeURIComponent(bodyType.type)}`
+        `/body/results?type=${encodeURIComponent(bodyType.type)}`
       );
     }
   };

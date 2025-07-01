@@ -24,7 +24,6 @@ interface BodyTypeInfo {
   };
 }
 
-// Image mapping for body types and clothing categories
 const bodyTypeImages: Record<
   string,
   {
@@ -385,7 +384,7 @@ export default function BodyTypeResultsPage() {
 
   return (
     <div className="min-h-screen bg-white pt-5">
-      <Header onSignOut={handleSignOut} />
+      <Header isLoggedIn={true} activePage="wardrobe" onSignOut={handleSignOut} />
       {/* Hero Section */}
       <div className="relative w-full h-[250px] flex items-center justify-center overflow-hidden">
         {/* Background Image */}
@@ -397,10 +396,8 @@ export default function BodyTypeResultsPage() {
           }}
         />
 
-        {/* Dark Overlay */}
-        <div className="absolute inset-0 bg-black bg-opacity-50" />
+        
 
-        {/* Title */}
         <div className="relative z-10 w-full max-w-[1000px] mx-auto px-6 text-center">
           <h1 className="text-white font-playfair text-4xl md:text-5xl lg:text-6xl font-normal leading-[150%] tracking-[1.28px]">
             {bodyTypeInfo.name}
