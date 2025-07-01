@@ -1,0 +1,48 @@
+/* Font Families */
+.font-syne {
+  font-family: 'Syne', sans-serif;
+}
+
+.font-playfair {
+  font-family: 'Playfair Display', serif;
+}
+
+.font-hanuman {
+  font-family: 'Hanuman', serif;
+}
+
+.font-manrope {
+  font-family: 'Manrope', sans-serif;
+}
+
+.font-marck {
+  font-family: 'Marck Script', cursive;
+}
+
+.font-port-lligat {
+  font-family: 'Port Lligat Slab', serif;
+}
+
+.font-courgette {
+  font-family: 'Courgette', cursive;
+}
+
+.font-medieval {
+  font-family: 'Medieval Sharp', cursive;
+}
+
+.font-inter {
+  font-family: 'Inter', sans-serif;
+}
+
+.font-aclonica {
+  font-family: 'Aclonica', sans-serif;
+}
+
+.font-open-sans {
+  font-family: 'Open Sans', sans-serif;
+}
+
+.font-lora {
+  font-family: 'Lora', serif;
+}
