@@ -1,5 +1,4 @@
-@import "tailwindcss/preflight";
-@import "tailwindcss/components";
-@import "tailwindcss/utilities";
+@import "tailwindcss";
 
+/* Import custom colors setelah Tailwind */
 @import "../styles/colors.css";
