@@ -10,23 +10,19 @@ export const HeroSection = ({
   className = ""
 }: HeroResultColor) => {
   return (
-    <section
-      className={`self-center z-0 w-full text-[56px] text-white font-bold text-center tracking-[1.28px] leading-[1.2] max-md:max-w-full max-md:text-[36px] ${className}`}
-    >
-      <div className="relative flex flex-col min-h-[250px] w-full overflow-hidden max-md:mr-0 max-md:max-w-full max-md:text-4xl">
-        
-        <img
-          src={backgroundImage}
-          className="absolute h-full w-full object-cover inset-0"
-          alt="Autumn background"
-        />
+    <section className={`relative w-full h-[250px] flex items-center justify-center ${className}`}>
+      
+      <div
+        className="absolute inset-0 bg-cover bg-center bg-no-repeat"
+        style={{ backgroundImage: `url('${backgroundImage}')` }}
+      ></div>
 
-        <div className="absolute h-full w-full bg-black bg-opacity-60 inset-0 z-10" />
+      <div className="absolute inset-0 bg-black opacity-60"></div>
 
-        <div className="relative z-20 px-16 py-20 w-full max-md:px-5 max-md:max-w-full max-md:text-4xl flex items-center justify-center">
-          <h1>{title}</h1>
-        </div>
-      </div>
+
+      <h1 className="relative z-10 text-white text-center font-playfair text-[64px] font-normal leading-[150%] tracking-[1.28px] max-w-[1000px]">
+        {title}
+      </h1>
     </section>
   );
 };
