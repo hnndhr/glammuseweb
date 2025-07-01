@@ -11,7 +11,7 @@ export default function AboutUsPage() {
 
   return (
     <div className="min-h-screen bg-white">
-      <Header activePage="about" onSignOut={handleSignOut} />
+      <Header isLoggedIn={true} activePage="about" onSignOut={handleSignOut} />
 
       <main className="w-full">
         {/* Hero Section */}

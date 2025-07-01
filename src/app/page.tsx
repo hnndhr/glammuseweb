@@ -36,7 +36,7 @@ export default function HomePage() {
 
   return (
     <div className="min-h-screen bg-white">
-      <Header onSignOut={handleSignOut} />
+      <Header isLoggedIn={true} activePage="home" onSignOut={handleSignOut} />
 
       <main className="w-full">
         <HeroSection onGetStarted={handleGetStarted} />

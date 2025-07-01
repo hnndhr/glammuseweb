@@ -162,7 +162,7 @@ export default function WardrobePage() {
           fill
           className="object-cover"
         />
-        <div className="absolute inset-0 bg-black bg-opacity-60" />
+        <div className="absolute inset-0 bg-black opacity-60"></div>
         <div className="absolute inset-0 flex items-center justify-center">
           <h1 className="text-white text-4xl md:text-5xl lg:text-6xl font-normal tracking-wide text-center">
             Wardrobe

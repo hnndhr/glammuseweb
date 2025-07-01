@@ -4,7 +4,6 @@ const HeroColor = () => {
   return (
     <section className="relative w-full h-[250px] flex items-center justify-center">
       <div className="absolute inset-0">
-        {/* Background Image */}
         <div
           className="absolute inset-0 bg-cover bg-center bg-no-repeat"
           style={{
@@ -12,11 +11,9 @@ const HeroColor = () => {
           }}
         ></div>
 
-        {/* Black Overlay */}
         <div className="absolute inset-0 bg-black opacity-60"></div>
       </div>
-      
-      {/* Title */}
+
       <h1 className="relative z-10 text-white text-center font-playfair text-[64px] font-normal leading-[150%] tracking-[1.28px] max-w-[1000px]">
         Personal Color Match
       </h1>
