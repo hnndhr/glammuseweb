@@ -1,12 +1,16 @@
 import React from "react";
 import { useRouter } from "next/navigation";
+import { Instagram, Twitter, Music2} from "lucide-react";
 
 interface FooterProps {
   onSocialClick?: (platform: string) => void;
   onLinkClick?: (link: string) => void;
 }
 
-export const Footer: React.FC<FooterProps> = ({ onSocialClick, onLinkClick }) => {
+export const Footer: React.FC<FooterProps> = ({
+  onSocialClick,
+  onLinkClick,
+}) => {
   const router = useRouter();
 
   const handleSocialClick = (platform: string) => {
@@ -91,21 +95,17 @@ export const Footer: React.FC<FooterProps> = ({ onSocialClick, onLinkClick }) =>
               {/* Socials */}
               <div className="flex gap-6">
                 {[
-                  { name: "instagram", label: "Instagram" },
-                  { name: "tiktok", label: "TikTok" },
-                  { name: "twitter", label: "Twitter" },
-                ].map((platform) => (
+                  { name: "instagram", label: "Instagram", Icon: Instagram },
+                  { name: "tiktok", label: "TikTok", Icon: Music2 },
+                  { name: "twitter", label: "Twitter", Icon: Twitter },
+                ].map(({ name, label, Icon }) => (
                   <button
-                    key={platform.name}
-                    onClick={() => handleSocialClick(platform.name)}
-                    aria-label={`Follow us on ${platform.label}`}
+                    key={name}
+                    onClick={() => handleSocialClick(name)}
+                    aria-label={`Follow us on ${label}`}
                     className="hover:opacity-80 transition-opacity duration-200 p-2 rounded-full hover:bg-white/10"
                   >
-                    <img 
-                      src={`/icons/${platform.name}.svg`} 
-                      alt={platform.label} 
-                      className="w-8 h-8" 
-                    />
+                    <Icon className="w-6 h-6 text-white" />
                   </button>
                 ))}
               </div>
@@ -140,7 +140,10 @@ export const Footer: React.FC<FooterProps> = ({ onSocialClick, onLinkClick }) =>
                   ],
                 },
               ].map((section) => (
-                <div key={section.heading} className="min-w-[180px] max-md:min-w-[140px]">
+                <div
+                  key={section.heading}
+                  className="min-w-[180px] max-md:min-w-[140px]"
+                >
                   <h3 className="text-medium text-xl font-syne font-semibold mb-6 max-md:text-lg max-md:mb-4">
                     {section.heading}
                   </h3>
