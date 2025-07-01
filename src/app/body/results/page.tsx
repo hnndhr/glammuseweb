@@ -334,7 +334,7 @@ export default function BodyTypeResultsPage() {
     const type = searchParams.get("type");
     if (type) {
       const normalizedType = type.toLowerCase().replace(/\s+/g, "-");
-      setBodyType(type);
+      setBodyType(normalizedType);
       setBodyTypeInfo(bodyTypeData[normalizedType] || null);
     } else {
       router.push("/body-shape");
@@ -380,278 +380,148 @@ export default function BodyTypeResultsPage() {
     );
   }
 
-  // ... selanjutnya paste semua konten JSX kamu di sini tanpa ubah lagi
-
-  return (
-    <div className="min-h-screen bg-white pt-5">
-      <Header isLoggedIn={true} activePage="wardrobe" onSignOut={handleSignOut} />
-      {/* Hero Section */}
-      <div className="relative w-full h-[250px] flex items-center justify-center overflow-hidden">
-        {/* Background Image */}
-        <div
-          className="absolute inset-0 bg-cover bg-center bg-no-repeat"
-          style={{
-            backgroundImage:
-              "url('https://i.pinimg.com/736x/04/9a/13/049a138906420e68cc3ad6c3a0b293c9.jpg')",
-          }}
-        />
-
-        
-
-        <div className="relative z-10 w-full max-w-[1000px] mx-auto px-6 text-center">
-          <h1 className="text-white font-playfair text-4xl md:text-5xl lg:text-6xl font-normal leading-[150%] tracking-[1.28px]">
-            {bodyTypeInfo.name}
-          </h1>
-        </div>
+ return (
+  <div className="min-h-screen bg-white pt-5">
+    <Header activePage="wardrobe" />
+    
+    {/* Hero Section */}
+    <div className="relative w-full h-[250px] flex items-center justify-center overflow-hidden">
+      <div
+        className="absolute inset-0 bg-cover bg-center bg-no-repeat"
+        style={{
+          backgroundImage:
+            "url('https://i.pinimg.com/736x/04/9a/13/049a138906420e68cc3ad6c3a0b293c9.jpg')",
+        }}
+      />
+      <div className="relative z-10 w-full max-w-[1000px] mx-auto px-6 text-center">
+        <h1 className="text-white font-playfair text-4xl md:text-5xl lg:text-6xl font-normal leading-[150%] tracking-[1.28px]">
+          {bodyTypeInfo.name}
+        </h1>
       </div>
+    </div>
 
-      {/* Content Section */}
-      <div className="py-5 px-6 lg:px-[300px]">
-        <div className="max-w-[840px] mx-auto">
-          {/* Top Description Section */}
-          <div className="flex flex-col lg:flex-row items-center gap-8 mb-8">
-            {(() => {
-              const images = bodyTypeImages[bodyType];;
-              return (
+    {/* Content Section */}
+    <div className="py-5 px-6 lg:px-[300px]">
+      <div className="max-w-[840px] mx-auto">
+        {/* Top Description Section */}
+        <div className="relative flex flex-col lg:flex-row items-center gap-8 mb-8">
+          {(() => {
+            const images = bodyTypeImages[bodyType];
+            return (
+              <div className="w-[250px] h-[370px] relative rounded-lg overflow-hidden flex-shrink-0">
                 <Image
                   src={
                     images?.illustration ||
                     "https://images.unsplash.com/photo-1594824804732-ca8db5ac6d84?q=80&w=273&auto=format&fit=crop&ixlib=rb-4.1.0"
                   }
                   alt={`${bodyType} body type illustration`}
-                  width={273}
-                  height={407}
-                  className="object-cover rounded-lg flex-shrink-0"
+                  fill
+                  className="object-cover rounded-lg"
+                  sizes="(max-width: 768px) 200px, 250px"
                 />
-              );
-            })()}
-            <div className="flex-1">
-              <p className="text-black font-manrope text-xl md:text-2xl font-normal leading-[150%] tracking-[0.48px] text-justify">
-                {bodyTypeInfo.description}
-              </p>
-            </div>
-          </div>
-
-          {/* Divider */}
-          <div className="w-full h-[1px] bg-black mb-8"></div>
-
-          {/* Styling Advice Section */}
-          <div className="mb-8">
-            <h2 className="text-black font-manrope text-2xl md:text-3xl font-bold leading-[150%] tracking-[0.6px] mb-4">
-              {bodyTypeInfo.stylingAdvice.title}
-            </h2>
-            <p className="text-black font-manrope text-lg md:text-xl font-normal leading-[150%] tracking-[0.4px] text-justify mb-6">
-              {bodyTypeInfo.stylingAdvice.content}
+              </div>
+            );
+          })()}
+          <div className="flex-1">
+            <p className="text-black font-manrope text-xl md:text-2xl font-normal leading-[150%] tracking-[0.48px] text-justify">
+              {bodyTypeInfo.description}
             </p>
-            <div className="space-y-4">
-              {bodyTypeInfo.stylingAdvice.tips.map((tip, index) => {
-                const [title, description] = tip.split(" - ");
-                return (
-                  <div key={index}>
-                    <h3 className="text-black font-manrope text-xl md:text-2xl font-bold mb-2">
-                      {title}
-                    </h3>
-                    <p className="text-black font-manrope text-lg md:text-xl font-normal leading-[150%] tracking-[0.4px] text-justify">
-                      {description}
-                    </p>
-                  </div>
-                );
-              })}
-            </div>
-          </div>
-
-          {/* Divider */}
-          <div className="w-full h-[1px] bg-black mb-8"></div>
-
-          {/* Clothing Categories Section */}
-          <div className="mb-8">
-            <h2 className="text-black font-manrope text-2xl md:text-3xl font-bold leading-[150%] tracking-[0.6px] mb-8">
-              Which Clothing Matches Best?
-            </h2>
-
-            <div className="space-y-12">
-              {/* Necklines */}
-              <div className="space-y-3">
-                <h3 className="text-black font-manrope text-xl md:text-2xl font-bold leading-[150%] tracking-[0.48px]">
-                  Necklines
-                </h3>
-                {(() => {
-                  const images = bodyTypeImages[bodyType];;
-                  return images?.necklines ? (
-                    <Image
-                      src={images.necklines}
-                      alt={`${bodyType} Necklines Dos and Don'ts`}
-                      fill
-                      className="border-4 border-tertiary/70 rounded-lg object-contain"
-                    />
-                  ) : (
-                    <div className="w-full h-[280px] border-4 border-tertiary/70 rounded-lg bg-gray-50 flex items-center justify-center">
-                      <p className="text-tertiary font-manrope text-lg text-center px-4">
-                        {bodyTypeInfo.clothingCategories.necklines}
-                      </p>
-                    </div>
-                  );
-                })()}
-              </div>
-
-              {/* Shirts */}
-              <div className="space-y-3">
-                <h3 className="text-black font-manrope text-xl md:text-2xl font-bold leading-[150%] tracking-[0.48px]">
-                  Shirts
-                </h3>
-                {(() => {
-                  const images = bodyTypeImages[bodyType];;
-                  return images?.shirts ? (
-                    <div className="relative w-full h-auto aspect-[3/2] border-4 border-tertiary/70 rounded-lg overflow-hidden">
-                      <Image
-                        src={images.shirts}
-                        alt={`${bodyType} Shirts Dos and Don'ts`}
-                        fill
-                        className="object-contain rounded-lg"
-                        sizes="(max-width: 768px) 100vw, 800px"
-                      />
-                    </div>
-                  ) : (
-                    <div className="w-full h-[280px] border-4 border-tertiary/70 rounded-lg bg-gray-50 flex items-center justify-center">
-                      <p className="text-tertiary font-manrope text-lg text-center px-4">
-                        {bodyTypeInfo.clothingCategories.shirts}
-                      </p>
-                    </div>
-                  );
-                })()}
-              </div>
-
-              {/* Jackets */}
-              <div className="space-y-3">
-                <h3 className="text-black font-manrope text-xl md:text-2xl font-bold leading-[150%] tracking-[0.48px]">
-                  Jackets
-                </h3>
-                {(() => {
-                  const images = bodyTypeImages[bodyType];;
-                  return images?.jackets ? (
-                    <div className="relative w-full h-[280px] border-4 border-tertiary/70 rounded-lg overflow-hidden">
-                      <Image
-                        src={images.jackets}
-                        alt={`${bodyType} Jackets Dos and Don'ts`}
-                        fill
-                        className="object-contain rounded-lg"
-                        sizes="(max-width: 768px) 100vw, 800px"
-                      />
-                    </div>
-                  ) : (
-                    <div className="w-full h-[280px] border-4 border-tertiary/70 rounded-lg bg-gray-50 flex items-center justify-center">
-                      <p className="text-tertiary font-manrope text-lg text-center px-4">
-                        {bodyTypeInfo.clothingCategories.jackets}
-                      </p>
-                    </div>
-                  );
-                })()}
-              </div>
-
-              {/* Trousers */}
-              <div className="space-y-3">
-                <h3 className="text-black font-manrope text-xl md:text-2xl font-bold leading-[150%] tracking-[0.48px]">
-                  Trousers
-                </h3>
-                {(() => {
-                  const images = bodyTypeImages[bodyType];;
-                  return images?.trousers ? (
-                    <div className="relative w-full h-[280px] border-4 border-tertiary/70 rounded-lg overflow-hidden">
-                      <Image
-                        src={images.trousers}
-                        alt={`${bodyType} Trousers Dos and Don'ts`}
-                        fill
-                        className="object-contain rounded-lg"
-                        sizes="(max-width: 768px) 100vw, 800px"
-                      />
-                    </div>
-                  ) : (
-                    <div className="w-full h-[280px] border-4 border-tertiary/70 rounded-lg bg-gray-50 flex items-center justify-center">
-                      <p className="text-tertiary font-manrope text-lg text-center px-4">
-                        {bodyTypeInfo.clothingCategories.trousers}
-                      </p>
-                    </div>
-                  );
-                })()}
-              </div>
-
-              {/* Skirts */}
-              <div className="space-y-3">
-                <h3 className="text-black font-manrope text-xl md:text-2xl font-bold leading-[150%] tracking-[0.48px]">
-                  Skirts
-                </h3>
-                {(() => {
-                  const images = bodyTypeImages[bodyType];;
-                  return images?.skirts ? (
-                    <div className="relative w-full h-[280px] border-4 border-tertiary/70 rounded-lg overflow-hidden">
-                      <Image
-                        src={images.skirts}
-                        alt={`${bodyType} Skirts Dos and Don'ts`}
-                        fill
-                        className="object-contain rounded-lg"
-                        sizes="(max-width: 768px) 100vw, 800px"
-                      />
-                    </div>
-                  ) : (
-                    <div className="w-full h-[280px] border-4 border-tertiary/70 rounded-lg bg-gray-50 flex items-center justify-center">
-                      <p className="text-tertiary font-manrope text-lg text-center px-4">
-                        {bodyTypeInfo.clothingCategories.skirts}
-                      </p>
-                    </div>
-                  );
-                })()}
-              </div>
-
-              {/* Dresses */}
-              <div className="space-y-3">
-                <h3 className="text-black font-manrope text-xl md:text-2xl font-bold leading-[150%] tracking-[0.48px]">
-                  Dresses
-                </h3>
-                {(() => {
-                  const images = bodyTypeImages[bodyType];;
-                  return images?.dresses ? (
-                    <div className="relative w-full h-[280px] border-4 border-tertiary/70 rounded-lg overflow-hidden">
-                      <Image
-                        src={images.dresses}
-                        alt={`${bodyType} Dresses Dos and Don'ts`}
-                        fill
-                        className="object-contain rounded-lg"
-                        sizes="(max-width: 768px) 100vw, 800px"
-                      />
-                    </div>
-                  ) : (
-                    <div className="w-full h-[280px] border-4 border-tertiary/70 rounded-lg bg-gray-50 flex items-center justify-center">
-                      <p className="text-tertiary font-manrope text-lg text-center px-4">
-                        {bodyTypeInfo.clothingCategories.dresses}
-                      </p>
-                    </div>
-                  );
-                })()}
-              </div>
-            </div>
-          </div>
-
-          {/* Action Buttons */}
-          <div className="flex flex-col sm:flex-row gap-4 justify-center mt-12">
-            <button
-              onClick={handleRetakeQuiz}
-              className="px-8 py-3 bg-tertiary text-white font-manrope text-lg font-normal rounded-lg shadow-md transition-all duration-300 hover:bg-darkest hover:scale-105 focus:outline-none focus:ring-2 focus:ring-cream focus:ring-opacity-50"
-            >
-              Retake Calculator
-            </button>
-            <button
-              onClick={handleBackToHome}
-              className="px-8 py-3 bg-white text-tertiary border-2 border-tertiary font-manrope text-lg font-normal rounded-lg shadow-md transition-all duration-300 hover:bg-cream hover:scale-105 focus:outline-none focus:ring-2 focus:ring-tertiary focus:ring-opacity-50"
-            >
-              Back to Home
-            </button>
           </div>
         </div>
+
+        {/* Divider */}
+        <div className="w-full h-[1px] bg-black mb-8"></div>
+
+        {/* Styling Advice Section */}
+        <div className="mb-8">
+          <h2 className="text-black font-manrope text-2xl md:text-3xl font-bold leading-[150%] tracking-[0.6px] mb-4">
+            {bodyTypeInfo.stylingAdvice.title}
+          </h2>
+          <p className="text-black font-manrope text-lg md:text-xl font-normal leading-[150%] tracking-[0.4px] text-justify mb-6">
+            {bodyTypeInfo.stylingAdvice.content}
+          </p>
+          <div className="space-y-4">
+            {bodyTypeInfo.stylingAdvice.tips.map((tip, index) => {
+              const [title, description] = tip.split(" - ");
+              return (
+                <div key={index}>
+                  <h3 className="text-black font-manrope text-xl md:text-2xl font-bold mb-2">
+                    {title}
+                  </h3>
+                  <p className="text-black font-manrope text-lg md:text-xl font-normal leading-[150%] tracking-[0.4px] text-justify">
+                    {description}
+                  </p>
+                </div>
+              );
+            })}
+          </div>
+        </div>
+
+        {/* Divider */}
+        <div className="w-full h-[1px] bg-black mb-8"></div>
+
+        {/* Clothing Categories Section */}
+        <div className="mb-8">
+          <h2 className="text-black font-manrope text-2xl md:text-3xl font-bold leading-[150%] tracking-[0.6px] mb-8">
+            Which Clothing Matches Best?
+          </h2>
+
+          <div className="space-y-12">
+            {["necklines", "shirts", "jackets", "trousers", "skirts", "dresses"].map((category) => {
+              const images = bodyTypeImages[bodyType];
+              const imgSrc = images?.[category as keyof typeof images];
+              const fallbackText = bodyTypeInfo.clothingCategories[category as keyof typeof bodyTypeInfo.clothingCategories];
+
+              return (
+                <div key={category} className="space-y-3">
+                  <h3 className="text-black font-manrope text-xl md:text-2xl font-bold leading-[150%] tracking-[0.48px] capitalize">
+                    {category}
+                  </h3>
+                  {imgSrc ? (
+                    <div className="inline-block border-4 border-tertiary/70 rounded-lg overflow-hidden">
+                      <Image
+                        src={imgSrc}
+                        alt={`${bodyType} ${category} Dos and Don'ts`}
+                        width={822}  
+                        height={500}
+                        className="object-contain rounded-lg"
+                      />
+                    </div>
+                  ) : (
+                    <div className="w-full h-[280px] border-4 border-tertiary/70 rounded-lg bg-gray-50 flex items-center justify-center">
+                      <p className="text-tertiary font-manrope text-lg text-center px-4">
+                        {fallbackText}
+                      </p>
+                    </div>
+                  )}
+                </div>
+              );
+            })}
+          </div>
+        </div>
+
+        {/* Action Buttons */}
+        <div className="flex flex-col sm:flex-row gap-4 justify-center mt-12">
+          <button
+            onClick={handleRetakeQuiz}
+            className="px-8 py-3 bg-tertiary text-white font-manrope text-lg font-normal rounded-lg shadow-md transition-all duration-300 hover:bg-darkest hover:scale-105 focus:outline-none focus:ring-2 focus:ring-cream focus:ring-opacity-50"
+          >
+            Retake Calculator
+          </button>
+          <button
+            onClick={handleBackToHome}
+            className="px-8 py-3 bg-white text-tertiary border-2 border-tertiary font-manrope text-lg font-normal rounded-lg shadow-md transition-all duration-300 hover:bg-cream hover:scale-105 focus:outline-none focus:ring-2 focus:ring-tertiary focus:ring-opacity-50"
+          >
+            Back to Home
+          </button>
+        </div>
       </div>
-      <Footer
-        onSocialClick={handleSocialClick}
-        onLinkClick={handleFooterLinkClick}
-      />
     </div>
-  );
+
+    <Footer
+      onSocialClick={handleSocialClick}
+      onLinkClick={handleFooterLinkClick}
+    />
+  </div>
+);
 }
