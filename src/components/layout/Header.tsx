@@ -2,24 +2,18 @@
 
 import React from "react";
 import Link from "next/link";
+import { useSession, signOut } from "next-auth/react";
 
 interface HeaderProps {
-  isLoggedIn: boolean;
-  onSignOut?: () => void;
   activePage?: "home" | "features" | "beautypedia" | "wardrobe" | "about" | "profile";
 }
 
-export const Header: React.FC<HeaderProps> = ({
-  isLoggedIn,
-  onSignOut,
-  activePage = "home",
-}) => {
+export const Header: React.FC<HeaderProps> = ({ activePage = "home" }) => {
+  const { data: session } = useSession();
+  const isLoggedIn = !!session;
+
   const handleSignOut = () => {
-    if (onSignOut) {
-      onSignOut();
-    } else {
-      console.log("Sign out clicked");
-    }
+    signOut({ callbackUrl: "/" });
   };
 
   const getLinkClass = (page: string) => {
@@ -39,15 +33,15 @@ export const Header: React.FC<HeaderProps> = ({
           <div className="w-10 h-10 flex items-center justify-center">
             {/* SVG Logo */}
             <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  version="1.0"
-                  width="40"
-                  height="40"
-                  viewBox="0 0 512.000000 512.000000"
-                  preserveAspectRatio="xMidYMid meet"
-                  className="w-full h-full fill-current text-warmBrown-800"
-                >
-                  <g
+              xmlns="http://www.w3.org/2000/svg"
+              version="1.0"
+              width="40"
+              height="40"
+              viewBox="0 0 512.000000 512.000000"
+              preserveAspectRatio="xMidYMid meet"
+              className="w-full h-full fill-current text-warmBrown-800"
+            >
+              <g
                 transform="translate(0.000000,512.000000) scale(0.100000,-0.100000)"
                 fill="var(--color-secondary)"
                 stroke="none"
