@@ -40,6 +40,10 @@ export default function ColorPage() {
     },
   };
 
+  const handleSignOut = () => {
+    console.log("User signed out");
+  };
+
   const handleSeeDescription = () => {
     router.push(`/color/result/${currentSeason.toLowerCase()}`);
   };
@@ -58,10 +62,18 @@ export default function ColorPage() {
     setCurrentSeason(seasons[nextIndex]);
   };
 
+  const handleSocialClick = (platform: string) => {
+    console.log("Social clicked:", platform);
+  };
+
+  const handleFooterLinkClick = (link: string) => {
+    console.log("Footer link clicked:", link);
+    window.scrollTo({ top: 0, behavior: "smooth" });
+  };
+
   return (
-    <div className="min-h-screen bg-white pt-5">
-      <Header />
-      <div className="bg-white pt-5"></div>
+    <div className="min-h-screen bg-white">
+      <Header onSignOut={handleSignOut} />
 
       <HeroColor />
 
@@ -79,7 +91,10 @@ export default function ColorPage() {
         <InstructionSection />
       </main>
 
-      <Footer />
+      <Footer
+        onSocialClick={handleSocialClick}
+        onLinkClick={handleFooterLinkClick}
+      />
     </div>
   );
 }

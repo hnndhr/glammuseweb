@@ -7,14 +7,25 @@ import ColorPalette from '@/components/color/result/Spring/ColorPalette';
 import { Footer } from '@/components/layout/Footer';
 
 export default function ResultColorSpringPage(){
+  const handleSignOut = () => {
+    console.log("User signed out");
+  };
+
+  const handleSocialClick = (platform: string) => {
+    console.log("Social clicked:", platform);
+  };
+
+  const handleFooterLinkClick = (link: string) => {
+    console.log("Footer link clicked:", link);
+    window.scrollTo({ top: 0, behavior: "smooth" });
+  };
+
   return (
-    <div className="bg-white pt-[34px]">
-      <Header />
+    <div className="min-h-screen bg-white">
+      <Header onSignOut={handleSignOut} />
 
-      <div className="mt-8 md:mt-12">
-        <HeroSection />
-      </div>
-
+      <HeroSection />
+      
       <main className="flex-1 px-6 md:px-12 lg:px-[100px] xl:px-[200px] py-[30px]">
         <div className="flex flex-col gap-9">
           <ColorPalette />
@@ -59,7 +70,10 @@ export default function ResultColorSpringPage(){
         </div>
       </main>
 
-      <Footer />
+      <Footer
+        onSocialClick={handleSocialClick}
+        onLinkClick={handleFooterLinkClick}
+      />
     </div>
   );
 };

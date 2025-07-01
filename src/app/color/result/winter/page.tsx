@@ -7,13 +7,24 @@ import ColorPalette, { } from '@/components/color/result/Winter/ColorPalette';
 import { Footer } from '@/components/layout/Footer';
 
 export default function ResultColorWinterPage() {
-  return (
-    <div className="bg-white pt-[34px]">
-      <Header />
+ const handleSignOut = () => {
+    console.log("User signed out");
+  };
 
-      <div className="mt-8 md:mt-12">
-        <HeroSection />
-      </div>
+  const handleSocialClick = (platform: string) => {
+    console.log("Social clicked:", platform);
+  };
+
+  const handleFooterLinkClick = (link: string) => {
+    console.log("Footer link clicked:", link);
+    window.scrollTo({ top: 0, behavior: "smooth" });
+  };
+
+  return (
+    <div className="min-h-screen bg-white">
+      <Header onSignOut={handleSignOut} />
+
+      <HeroSection />
 
       <main className="flex-1 px-6 md:px-12 lg:px-[100px] xl:px-[200px] py-[30px]">
         <div className="flex flex-col gap-9">
@@ -59,7 +70,10 @@ export default function ResultColorWinterPage() {
         </div>
       </main>
 
-      <Footer />
+      <Footer
+        onSocialClick={handleSocialClick}
+        onLinkClick={handleFooterLinkClick}
+      />
     </div>
   );
 };
