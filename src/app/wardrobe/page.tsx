@@ -31,7 +31,7 @@ const WardrobeCard = ({ type, images, onClick, onDelete }: WardrobeCardProps) =>
         onClick={onClick}
       >
         <div className="absolute inset-0 flex items-center justify-center">
-          <div className="w-64 h-64 bg-gray-800 flex items-center justify-center rounded-lg">
+          <div className="w-64 h-64 bg-white flex items-center justify-center rounded-lg">
             <svg
               width="160"
               height="160"
