@@ -146,7 +146,7 @@ export default function BodyShapePage() {
 
   return (
     <div className="min-h-screen bg-white">
-      <Header activePage="features" onSignOut={handleSignOut} />
+      <Header isLoggedIn={true} activePage="features" onSignOut={handleSignOut} />
 
       {/* Hero Section */}
       <div className="relative w-full h-[250px] flex items-center justify-center overflow-hidden">

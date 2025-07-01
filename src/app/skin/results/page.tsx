@@ -209,17 +209,23 @@ export default function SkinTypeResults() {
     return null;
   }
 
+    const handleSignOut = () => {
+    console.log("User signed out");
+  };
+
   return (
     <div className="min-h-screen bg-white">
-      <Header />
+      <Header isLoggedIn={true} activePage="features" onSignOut={handleSignOut} />
 
       {/* Hero Section */}
       <div className="relative w-full h-[250px] flex items-center justify-center overflow-hidden">
-        <div
+      <div
           className="absolute inset-0 bg-cover bg-center bg-no-repeat"
           style={{ backgroundImage: `url('${data.heroImage}')` }}
-        />
-        <div className="absolute inset-0 bg-black bg-opacity-60" />
+        ></div>
+
+        {/* Overlay Hitam */}
+        <div className="absolute inset-0 bg-black opacity-60"></div>
         <div className="relative z-10 w-full max-w-[1000px] mx-auto px-6 text-center">
           <h1 className="text-white font-playfair text-4xl md:text-5xl lg:text-6xl font-normal leading-[150%] tracking-[1.28px]">
             {data.title}

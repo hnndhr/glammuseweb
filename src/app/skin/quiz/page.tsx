@@ -305,7 +305,7 @@ export default function SkinTypeQuizPage() {
 
   return (
     <div className="min-h-screen bg-white">
-      <Header onSignOut={handleSignOut} />
+      <Header isLoggedIn={true} activePage="features" onSignOut={handleSignOut} />
 
       {/* Hero */}
       <div className="relative w-full h-[250px] flex items-center justify-center overflow-hidden">
@@ -316,7 +316,7 @@ export default function SkinTypeQuizPage() {
               "url('https://images.unsplash.com/photo-1630359694494-0d16c120fcea?q=80&w=736&auto=format&fit=crop')",
           }}
         />
-        <div className="absolute inset-0 bg-black bg-opacity-60" />
+        <div className="absolute inset-0 bg-black opacity-60"></div>
         <div className="relative z-10 text-center px-6">
           <h1 className="text-white font-playfair text-5xl lg:text-6xl font-medium">
             Skin Type Test

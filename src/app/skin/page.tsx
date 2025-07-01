@@ -27,7 +27,7 @@ export default function SkinPage() {
 
   return (
     <div className="min-h-screen bg-white">
-      <Header onSignOut={handleSignOut} />
+      <Header isLoggedIn={true} activePage="features" onSignOut={handleSignOut} />
       <main className="w-full">
         {/* Hero Section */}
         <div className="relative w-full h-[904px] flex items-center justify-center overflow-hidden">
@@ -40,8 +40,7 @@ export default function SkinPage() {
             }}
           />
 
-          {/* Dark Overlay */}
-          <div className="absolute inset-0 bg-black bg-opacity-60" />
+          <div className="absolute inset-0 bg-black opacity-60"></div>
 
           {/* Content */}
           <div className="relative z-10 w-full max-w-[1200px] mx-auto px-6 text-center">

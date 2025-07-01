@@ -152,7 +152,7 @@ export default function WardrobePage() {
 
   return (
     <div className="min-h-screen bg-white">
-      <Header onSignOut={handleSignOut} />
+      <Header isLoggedIn={true} activePage="wardrobe" onSignOut={handleSignOut} />
 
       {/* Hero Section */}
       <div className="relative w-full h-[250px] bg-gray-900">
