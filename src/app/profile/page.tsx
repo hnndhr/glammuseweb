@@ -19,12 +19,15 @@ export default function ProfilePage() {
   const [personalInfo, setPersonalInfo] = useState<PersonalInfo | null>(null);
   const [currentPlan, setCurrentPlan] = useState("Iconic Plan");
 
+  // ✅ Fetch user info & plan
   useEffect(() => {
     const fetchUser = async () => {
       if (!session?.user?.email) return;
 
       try {
-        const res = await fetch(`/api/user/${encodeURIComponent(session.user.email)}`);
+        const res = await fetch(
+          `/api/user/${encodeURIComponent(session.user.email)}`
+        );
         const data = await res.json();
 
         if (!res.ok) throw new Error(data.message || "Failed to fetch user");
@@ -46,15 +49,19 @@ export default function ProfilePage() {
     }
   }, [session, status]);
 
+  // ✅ Update profile info
   const handleUpdateInfo = async (newInfo: PersonalInfo) => {
     try {
-      const res = await fetch(`/api/user/${encodeURIComponent(newInfo.email)}`, {
-        method: "PUT",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(newInfo),
-      });
+      const res = await fetch(
+        `/api/user/${encodeURIComponent(newInfo.email)}`,
+        {
+          method: "PUT",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify(newInfo),
+        }
+      );
 
       if (!res.ok) throw new Error("Failed to update user info");
 
@@ -65,9 +72,27 @@ export default function ProfilePage() {
     }
   };
 
-  const handleChangePlan = (newPlan: string) => {
-    setCurrentPlan(newPlan);
-    console.log("✅ Subscription plan changed to:", newPlan);
+  // ✅ Update subscription plan in DB
+  const handleChangePlan = async (newPlan: string) => {
+    if (!session?.user?.email) return;
+
+    try {
+      const res = await fetch("/api/user/plan", {
+        method: "PUT",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          email: session.user.email,
+          subscriptionPlan: newPlan,
+        }),
+      });
+
+      if (!res.ok) throw new Error("Failed to update subscription plan");
+
+      setCurrentPlan(newPlan);
+      console.log("✅ Plan updated to:", newPlan);
+    } catch (error) {
+      console.error("❌ Error updating plan:", error);
+    }
   };
 
   const handleSocialClick = (platform: string) => {
@@ -80,24 +105,30 @@ export default function ProfilePage() {
   };
 
   if (status === "loading") return <p>Loading...</p>;
+  if (status !== "authenticated" || !personalInfo) return <p>Unauthorized</p>;
 
   return (
     <div className="min-h-screen bg-white">
       <Header activePage="profile" />
 
       <main className="flex w-full flex-col pl-[35px] max-md:max-w-full max-md:pl-5">
-        {personalInfo && (
-          <ProfileSection
-            profileImage="https://cdn.builder.io/api/v1/image/assets/TEMP/444a845eb8b00ad32b69ad163f55a62b0b1860d7?placeholderIfAbsent=true"
-            userName={personalInfo.firstName}
-            personalInfo={personalInfo}
-            onUpdateInfo={handleUpdateInfo}
-          />
-        )}
+        <ProfileSection
+          profileImage="https://cdn.builder.io/api/v1/image/assets/TEMP/444a845eb8b00ad32b69ad163f55a62b0b1860d7?placeholderIfAbsent=true"
+          userName={personalInfo.firstName}
+          personalInfo={personalInfo}
+          onUpdateInfo={handleUpdateInfo}
+        />
 
         <SubscriptionSection
+          userEmail={personalInfo.email}
           currentPlan={currentPlan}
-          planCost="Rp169.000"
+          planCost={
+            currentPlan === "Iconic Plan"
+              ? "Rp169.000"
+              : currentPlan === "Muse Plan"
+              ? "Rp99.000"
+              : "FREE"
+          }
           renewalDate="Dec 25, 2025"
           onChangePlan={handleChangePlan}
         />

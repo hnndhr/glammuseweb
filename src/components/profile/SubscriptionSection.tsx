@@ -15,7 +15,8 @@ interface SubscriptionSectionProps {
   planCost?: string;
   renewalDate?: string;
   onChangePlan?: (planId: string) => void;
-  onViewAnalysisDetails?: (analysisId: string) => void; // ✅ Tambahkan prop ini
+  onViewAnalysisDetails?: (analysisId: string) => void;
+  userEmail: string;
 }
 
 const subscriptionPlans: SubscriptionPlan[] = [
@@ -47,7 +48,8 @@ export const SubscriptionSection: React.FC<SubscriptionSectionProps> = ({
   planCost = 'Rp169.000',
   renewalDate = 'Dec 25, 2025',
   onChangePlan,
-  onViewAnalysisDetails // ✅ Terima prop ini
+  onViewAnalysisDetails,
+  userEmail
 }) => {
   const [showChangePlan, setShowChangePlan] = useState(false);
   const [selectedPlan, setSelectedPlan] = useState<SubscriptionPlan | null>(null);
@@ -61,13 +63,25 @@ export const SubscriptionSection: React.FC<SubscriptionSectionProps> = ({
     }
   };
 
-  const confirmChangePlan = () => {
+  const confirmChangePlan = async () => {
     if (selectedPlan) {
-      setActivePlan(selectedPlan.name);
-      setCurrentCost(selectedPlan.price);
-      onChangePlan?.(selectedPlan.id);
-      setSelectedPlan(null);
-      setShowChangePlan(false);
+      try {
+        const res = await fetch("/api/user/plan", {
+          method: "PUT",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ email: userEmail, subscriptionPlan: selectedPlan.id })
+        });
+
+        if (!res.ok) throw new Error("Gagal mengupdate plan");
+
+        setActivePlan(selectedPlan.name);
+        setCurrentCost(selectedPlan.price);
+        onChangePlan?.(selectedPlan.id);
+        setSelectedPlan(null);
+        setShowChangePlan(false);
+      } catch (error) {
+        console.error("❌ Gagal update plan:", error);
+      }
     }
   };
 
@@ -119,7 +133,6 @@ export const SubscriptionSection: React.FC<SubscriptionSectionProps> = ({
         </article>
       </div>
 
-      {/* Optional View Analysis Button */}
       {onViewAnalysisDetails && (
         <div className="text-center mt-10">
           <button

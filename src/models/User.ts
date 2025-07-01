@@ -21,7 +21,7 @@ const UserSchema: Schema<IUser> = new Schema(
     email: { type: String, required: true, unique: true },
     phone: { type: String, required: true },
     profilePicture: { type: String, default: "" },
-    subscriptionPlan: { type: String, default: "free" },
+    subscriptionPlan: { type: String, default: "Rookie Plan" },
     password: { type: String, required: true },
   },
   { timestamps: true }
