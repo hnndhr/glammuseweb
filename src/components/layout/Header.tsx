@@ -74,7 +74,7 @@ export const Header: React.FC<HeaderProps> = ({
             <Link href="/" className={getLinkClass("features")}>
               Features
             </Link>
-            <Link href="/article" className={getLinkClass("beautypedia")}>
+            <Link href="/#beautypedia-section" className={getLinkClass("beautypedia")}>
               Beautypedia
             </Link>
             {isLoggedIn && (

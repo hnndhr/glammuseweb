@@ -67,13 +67,13 @@ export const BeautypediaSection = ({
   };
 
   const handleCardClick = (title: string) => {
-    const slug = title.toLowerCase().replace(/\s+/g, "-");
-    onBlogCardClick(title);
-    router.push(`/article/${slug}`);
+  onBlogCardClick(title);
+  router.push("/article");
   };
 
+
   return (
-    <div className="bg-peach py-16 lg:py-24">
+    <div id="beautypedia-section" className="bg-peach py-16 lg:py-24">
       <div className="container mx-auto px-6 lg:px-16">
         {/* Section Header */}
         <div className="text-center mb-16">
