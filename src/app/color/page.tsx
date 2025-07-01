@@ -73,7 +73,7 @@ export default function ColorPage() {
 
   return (
     <div className="min-h-screen bg-white">
-      <Header onSignOut={handleSignOut} />
+      <Header isLoggedIn={true} activePage="features" onSignOut={handleSignOut} />
 
       <HeroColor />
 
