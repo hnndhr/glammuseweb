@@ -224,8 +224,8 @@ export default function SkinTypeResults() {
           style={{ backgroundImage: `url('${data.heroImage}')` }}
         ></div>
 
-        {/* Overlay Hitam */}
         <div className="absolute inset-0 bg-black opacity-60"></div>
+        
         <div className="relative z-10 w-full max-w-[1000px] mx-auto px-6 text-center">
           <h1 className="text-white font-playfair text-4xl md:text-5xl lg:text-6xl font-normal leading-[150%] tracking-[1.28px]">
             {data.title}
